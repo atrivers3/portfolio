@@ -162,7 +162,7 @@ export function PortfolioView() {
           <div className="contact-copy">
             <p>I build software and systems with a focus on clear architecture, reliable behavior, and maintainable code.</p>
             <div>
-              <a href="mailto:ayan.aslam.cs@gmail.com" className="inline-flex items-center gap-2">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ayan.aslam.cs@gmail.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
                 <Mail /> Email Ayan
               </a>
               <a href="https://github.com/atrivers3" target="_blank" rel="noopener noreferrer">
