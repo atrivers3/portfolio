@@ -1,61 +1,31 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
+import type { Metadata, Viewport } from "next"
+import { Geist, Geist_Mono } from "next/font/google"
+import "./globals.css"
 
-/* ─── Fonts ──────────────────────────────────────────────────── */
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets:  ["latin"],
-  display:  "swap",
-});
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist" })
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" })
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets:  ["latin"],
-  display:  "swap",
-});
-
-/* ─── Site-level Metadata ────────────────────────────────────── */
 export const metadata: Metadata = {
-  title:       "Ayan Aslam | Backend Engineer & AI Systems Builder",
-  description:
-    "Portfolio of Ayan Aslam — backend engineer specialising in distributed systems, AI pipelines, and production-grade API architecture. Studied at FAST-NUCES.",
-  keywords: [
-    "Ayan Aslam",
-    "backend engineer",
-    "AI systems",
-    "distributed systems",
-    "FAST-NUCES",
-    "portfolio",
-    "Python",
-    "TypeScript",
-  ],
-  authors:  [{ name: "Ayan Aslam" }],
-  creator:  "Ayan Aslam",
-  openGraph: {
-    title:       "Ayan Aslam | Backend Engineer & AI Systems Builder",
-    description: "Production-focused backend engineering and AI systems.",
-    type:        "website",
-    locale:      "en_PK",
-  },
-  robots: {
-    index:  true,
-    follow: true,
-  },
-};
+  title: "Ayan Aslam — Distributed Systems Observatory",
+  description: "Backend and distributed systems engineering portfolio focused on reliable infrastructure, observability, and architecture-first thinking.",
+  generator: "v0.app",
+}
 
-/* ─── Root Layout ────────────────────────────────────────────── */
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export const viewport: Viewport = {
+  colorScheme: "dark",
+  themeColor: "#0A0A0A",
+  width: "device-width",
+  initialScale: 1,
+}
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable}`}
-    >
-      <body>
+    <html lang="en" className="dark bg-background">
+      <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased`}>
         {children}
+        {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>
-  );
+  )
 }
