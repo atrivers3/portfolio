@@ -62,7 +62,7 @@ export function ProfileCard() {
         <span className="profile-face profile-front">
           <span className="portrait-frame">
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/MyProfessionalPicture-oYg3ZaXXhARavFLOPqnqarkvMWPTi7.png"
+              src="/assets/profile.png"
               alt="Ayan Aslam"
               draggable={false}
             />
