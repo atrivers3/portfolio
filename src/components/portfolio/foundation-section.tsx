@@ -1,12 +1,7 @@
 "use client"
 
 import { CircleCheck, Clock, Trophy, Users } from "lucide-react"
-import {
-  awards,
-  education,
-  harvardAspire,
-  leadershipTimeline,
-} from "@/lib/portfolio-data"
+import { awards, education, harvardAspire, leadershipTimeline } from "../../lib/portfolio-data"
 
 // ─── Education Card ──────────────────────────────────────────────────────────
 

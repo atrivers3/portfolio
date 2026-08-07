@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { ArrowUpRight, Braces, Boxes, CircuitBoard, ScanLine } from "lucide-react"
-import type { Project } from "@/lib/portfolio-data"
+import type { Project } from "../../lib/portfolio-data"
 
 const phases = ["code", "scramble", "pixels", "architecture", "preview"] as const
 type Phase = (typeof phases)[number]

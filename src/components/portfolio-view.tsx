@@ -3,14 +3,14 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { ArrowDown, ArrowRight, Check, CirclePause, CirclePlay, Mail, Network, Terminal, Radio, X } from "lucide-react"
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { projects, type Project } from "@/lib/portfolio-data"
-import { HeroBackground } from "@/components/portfolio/hero-background"
-import { ProfileCard } from "@/components/portfolio/profile-card"
-import { ProjectCard } from "@/components/portfolio/project-card"
-import { ProjectDialog } from "@/components/portfolio/project-dialog"
-import { HyperspaceRouter } from "@/components/portfolio/hyperspace-router"
-import { FoundationSection } from "@/components/portfolio/foundation-section"
-import { DeploymentsSection } from "@/components/portfolio/deployments-section"
+import { projects, type Project } from "../lib/portfolio-data"
+import { HeroBackground } from "./portfolio/hero-background"
+import { ProfileCard } from "./portfolio/profile-card"
+import { ProjectCard } from "./portfolio/project-card"
+import { ProjectDialog } from "./portfolio/project-dialog"
+import { HyperspaceRouter } from "./portfolio/hyperspace-router"
+import { FoundationSection } from "./portfolio/foundation-section"
+import { DeploymentsSection } from "./portfolio/deployments-section"
 
 const tourSteps = [
   { label: "Systems", target: "systems", duration: 8000 },

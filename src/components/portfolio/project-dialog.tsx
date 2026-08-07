@@ -1,8 +1,8 @@
 "use client"
 
 import { ExternalLink } from "lucide-react"
-import type { Project } from "@/lib/portfolio-data"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import type { Project } from "../../lib/portfolio-data"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../ui/dialog"
 
 export function ProjectDialog({ project, open, onOpenChange }: { project: Project | null; open: boolean; onOpenChange: (open: boolean) => void }) {
   if (!project) return null

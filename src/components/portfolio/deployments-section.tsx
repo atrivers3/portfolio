@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { ChevronDown, ChevronRight, Activity, Code2, Briefcase, Calendar } from "lucide-react"
-import { deployments, type Deployment } from "@/lib/portfolio-data"
+import { deployments, type Deployment } from "../../lib/portfolio-data"
 
 function DeploymentCard({ deployment }: { deployment: Deployment }) {
   const [expanded, setExpanded] = useState(false)
