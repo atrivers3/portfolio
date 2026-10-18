@@ -3,9 +3,15 @@
 import { ExternalLink } from "lucide-react"
 import type { Project } from "@/lib/portfolio-data"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { AgentInspector } from "@/components/portfolio/agent-inspector"
+import { TransactionInspector } from "@/components/portfolio/transaction-inspector"
 
 export function ProjectDialog({ project, open, onOpenChange }: { project: Project | null; open: boolean; onOpenChange: (open: boolean) => void }) {
   if (!project) return null
+
+  const hasAgentInspector = project.id === "mini-ai-agent"
+  const hasTransactionInspector = project.id === "mini-gateway"
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="architecture-dialog sm:max-w-3xl">
@@ -24,6 +30,10 @@ export function ProjectDialog({ project, open, onOpenChange }: { project: Projec
             <div><span>System decision</span><p>{project.decision}</p></div>
             <div><span>Measured outcome</span><p>{project.outcome}</p></div>
           </div>
+
+          {/* ── Project-specific interactive inspector ── */}
+          {hasAgentInspector && <AgentInspector />}
+          {hasTransactionInspector && <TransactionInspector />}
         </div>
         <div className="dialog-footer-row">
           <div className="stack-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
