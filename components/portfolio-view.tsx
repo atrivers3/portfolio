@@ -1,14 +1,13 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
-import { ArrowDown, ArrowRight, Check, CirclePause, CirclePlay, Mail, Network, Terminal, Radio, X } from "lucide-react"
+import { useEffect, useState } from "react"
+import { ArrowDown, ArrowRight, Check, CirclePause, CirclePlay, Mail, Terminal, Radio, X } from "lucide-react"
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { projects, type Project } from "@/lib/portfolio-data"
 import { HeroBackground } from "@/components/portfolio/hero-background"
 import { ProfileCard } from "@/components/portfolio/profile-card"
 import { ProjectCard } from "@/components/portfolio/project-card"
 import { ProjectDialog } from "@/components/portfolio/project-dialog"
-import { HyperspaceRouter } from "@/components/portfolio/hyperspace-router"
 import { FoundationSection } from "@/components/portfolio/foundation-section"
 import { DeploymentsSection } from "@/components/portfolio/deployments-section"
 
@@ -21,76 +20,7 @@ const tourSteps = [
 
 export function PortfolioView() {
   const [selected, setSelected] = useState<Project | null>(null)
-  const [routeActive, setRouteActive] = useState(false)
-  const [hasWarped, setHasWarped] = useState(false)
-  const [systemsVisible, setSystemsVisible] = useState(false)
-  // ── 3C: Replace scrollVelocity state with a ref — eliminates full-tree
-  //        re-render on every scroll event (main source of scroll jank on mobile)
-  const scrollVelocityRef = useRef(0)
-  const [routeStatus, setRouteStatus] = useState("")
   const [tour, setTour] = useState({ active: false, paused: false, step: 0 })
-  const heroRef = useRef<HTMLElement>(null)
-  const routeActiveRef = useRef(false)
-  const hasWarpedRef = useRef(false)
-  const lastScrollYRef = useRef(0)
-  const lastScrollTimeRef = useRef(0)
-
-  const startRoute = useCallback(() => {
-    if (routeActiveRef.current || hasWarpedRef.current) {
-      setRouteStatus("Already routed")
-      window.setTimeout(() => setRouteStatus(""), 1600)
-      return
-    }
-    routeActiveRef.current = true
-    hasWarpedRef.current = true
-    setRouteStatus("")
-    setRouteActive(true)
-  }, [])
-
-  const finishRoute = useCallback(() => {
-    routeActiveRef.current = false
-    setRouteActive(false)
-    setHasWarped(true)
-    // HyperspaceRouter already handles smooth scroll — just reveal the section
-    window.requestAnimationFrame(() => {
-      setSystemsVisible(true)
-      history.replaceState(null, "", "#architecture_logs")
-    })
-  }, [])
-
-  useEffect(() => {
-    const hero = heroRef.current
-    if (!hero) return
-
-    lastScrollYRef.current = window.scrollY
-    lastScrollTimeRef.current = performance.now()
-
-    const handleScroll = () => {
-      if (hasWarpedRef.current || routeActiveRef.current) return
-
-      // ── Bug §4.1: Don't trigger warp when scrolling to a hash anchor.
-      //    Only fire when the user scrolled past the 90% point of the hero
-      //    *downward* (positive delta) — not on programmatic jumps.
-      const now = performance.now()
-      const elapsed = Math.max(now - lastScrollTimeRef.current, 16)
-      const delta = window.scrollY - lastScrollYRef.current
-
-      // ── 3C: Write to ref, not state — zero re-renders
-      scrollVelocityRef.current = Math.abs(delta / elapsed) * 100
-
-      lastScrollYRef.current = window.scrollY
-      lastScrollTimeRef.current = now
-
-      // Only trigger warp on a genuine downward scroll that crosses 90% of hero
-      if (delta > 0) {
-        const triggerPoint = hero.offsetTop + hero.offsetHeight * 0.9
-        if (window.scrollY >= triggerPoint) startRoute()
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [startRoute])
 
   useEffect(() => {
     if (!tour.active || tour.paused) return
@@ -123,7 +53,7 @@ export function PortfolioView() {
         <a className="contact-chip" href="#contact"><span className="status-dot" /> Open to build <ArrowRight /></a>
       </header>
 
-      <section className="hero" id="top" ref={heroRef}>
+      <section className="hero" id="top">
         <HeroBackground />
         <div className="hero-grid">
           <div className="hero-content">
@@ -140,7 +70,6 @@ export function PortfolioView() {
                 📄 View Resume →
               </a>
               <a className="secondary-action" href="#contact">Open a connection</a>
-              <span className="route-status font-mono" id="route-status" aria-live="polite">{routeStatus}</span>
             </div>
             <div className="hero-signals font-mono">
               <span><small>FOCUS</small>Distributed systems</span>
@@ -153,13 +82,7 @@ export function PortfolioView() {
         <a href="#systems" className="scroll-cue"><ArrowDown /><span className="font-mono">OBSERVE SYSTEMS</span></a>
       </section>
 
-      {/* ── Bug §4.2: Add inert when hidden so Tab cannot reach hidden buttons */}
-      <section
-        className={`section systems-section ${systemsVisible || routeActive ? "systems-visible" : "systems-hidden"}`}
-        id="systems"
-        aria-hidden={!systemsVisible && !routeActive}
-        inert={!systemsVisible && !routeActive}
-      >
+      <section className="section systems-section systems-visible" id="systems">
         <div className="section-heading">
           <div><span className="section-index font-mono">01 / SYSTEMS BUILT</span><h2>Engineered implementations,<br />made inspectable.</h2></div>
           <p>Each system exposes the code, topology, tradeoffs, and measured operating characteristics behind the interface.</p>
@@ -202,8 +125,6 @@ export function PortfolioView() {
       </div>}
 
       <ProjectDialog project={selected} open={Boolean(selected)} onOpenChange={(open) => !open && setSelected(null)} />
-      {/* ── 3C: Pass ref instead of state — HyperspaceRouter reads .current in rAF */}
-      <HyperspaceRouter active={routeActive} velocityRef={scrollVelocityRef} onComplete={finishRoute} nextSectionId="systems" />
     </main>
   )
 }

@@ -305,10 +305,7 @@ button { font: inherit; }
 .systems-section { transition: opacity 300ms ease; }
 .systems-hidden { opacity: 0; pointer-events: none; }
 .systems-visible { opacity: 1; pointer-events: auto; }
-.route-status { min-height: 14px; color: var(--accent); font-size: 9px; letter-spacing: .08em; }
-.hyperspace { position: fixed; inset: 0; z-index: 100; overflow: hidden; background: var(--background); }
-.hyperspace canvas { display: block; width: 100%; height: 100%; }
-.route-label { position: absolute; top: 60%; left: 50%; color: var(--primary); font-size: 12px; letter-spacing: .08em; opacity: 0; transform: translate(-50%, -50%); animation: route-status-pulse 1500ms ease-in-out both; white-space: nowrap; }
+
 @keyframes route-status-pulse {
   0%, 55% { opacity: 0; }
   65%, 78% { opacity: 1; }
