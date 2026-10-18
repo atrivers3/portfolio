@@ -1,11 +1,13 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { ArrowDown, ArrowRight, Check, CirclePause, CirclePlay, Mail, Terminal, Radio, X } from "lucide-react"
+import { ArrowDown, ArrowRight, CirclePause, CirclePlay, Terminal, X } from "lucide-react"
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { projects, type Project } from "@/lib/portfolio-data"
 import { HeroBackground } from "@/components/portfolio/hero-background"
 import { ProfileCard } from "@/components/portfolio/profile-card"
+import { HeroTerminal } from "@/components/portfolio/hero-terminal"
+import { ContactEmail } from "@/components/portfolio/contact-email"
 import { ProjectCard } from "@/components/portfolio/project-card"
 import { ProjectDialog } from "@/components/portfolio/project-dialog"
 import { FoundationSection } from "@/components/portfolio/foundation-section"
@@ -45,7 +47,7 @@ export function PortfolioView() {
       <header className="observatory-header">
         <a className="brand" href="#top" aria-label="atrivers3 home">
           <span className="brand-mark"><Terminal strokeWidth={2.5} /></span>
-          <span><strong>atrivers3</strong><small>Backend &amp; Distributed Systems</small></span>
+          <span><strong>atrivers3</strong><small>Backend &amp; Systems</small></span>
         </a>
         <nav aria-label="Primary navigation">
           <a href="#systems">Systems</a><a href="#deployments">Experience</a><a href="#foundation">Foundation</a>
@@ -59,7 +61,8 @@ export function PortfolioView() {
           <div className="hero-content">
             <div className="eyebrow font-mono"><span className="status-dot" /> SYSTEM STATUS / AVAILABLE</div>
             <h1>I build systems that <span>don't surprise you.</span></h1>
-            <p className="hero-lede">I&apos;m Ayan Aslam <span>(@atrivers3)</span>, a backend and distributed systems engineer who builds reliable infrastructure, designs for failure, and keeps systems running at scale.</p>
+            <HeroTerminal />
+            <p className="hero-lede">I&apos;m Ayan Aslam <span>(@atrivers3)</span>, a software engineer focused on backend systems, reliable infrastructure, and failure-aware design.</p>
             <div className="hero-actions">
               <a 
                 href="https://drive.google.com/drive/folders/16w0qoOGRsy1h_fjroOrxNc0cpKhcD5L-?usp=sharing" 
@@ -72,9 +75,9 @@ export function PortfolioView() {
               <a className="secondary-action" href="#contact">Open a connection</a>
             </div>
             <div className="hero-signals font-mono">
-              <span><small>FOCUS</small>Distributed systems</span>
+              <span><small>FOCUS</small>Backend Systems</span>
               <span><small>PRINCIPLE</small>Failure-aware design</span>
-              <span><small>LOCATION</small>UTC+05 / Remote</span>
+              <span><small>LOCATION</small>Pakistan (Onsite/Hybrid) · Remote</span>
             </div>
           </div>
           <ProfileCard />
@@ -102,9 +105,7 @@ export function PortfolioView() {
           <div className="contact-copy">
             <p>I build software and systems with a focus on clear architecture, reliable behavior, and maintainable code.</p>
             <div>
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ayan.aslam.cs@gmail.com" target="_blank" rel="noopener noreferrer">
-                <Mail /> Email Ayan
-              </a>
+              <ContactEmail />
               <a href="https://github.com/atrivers3" target="_blank" rel="noopener noreferrer">
                 <FaGithub className="h-4 w-4" /> GitHub
               </a>
@@ -114,7 +115,7 @@ export function PortfolioView() {
             </div>
           </div>
         </div>
-        <footer><span>AYAN ARAIN / BACKEND &amp; DISTRIBUTED SYSTEMS</span><span className="font-mono">atrivers3 / build 2026.08</span></footer>
+        <footer><span>AYAN ASLAM / BACKEND &amp; SYSTEMS</span><span className="font-mono">atrivers3 / build 2026.08</span></footer>
       </section>
 
       {tour.active && <div className="tour-control" role="status" aria-live="polite">

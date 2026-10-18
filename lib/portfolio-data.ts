@@ -37,7 +37,7 @@ export const projects: Project[] = [
     problem: "Driver-passenger matching needed accurate road proximity without making every candidate an expensive external routing request.",
     decision: "Applied a local bounding-box filter first, then ranked the reduced candidate set using OSRM road-path routing.",
     outcome: "A normalized, authenticated backend for ride requests, matching, and transaction flows with controlled external API usage.",
-    github: "https://github.com/atrivers3",
+    github: "https://github.com/atrivers3/CarVaana",
   },
   {
     id: "parhofast",
@@ -61,7 +61,7 @@ export const projects: Project[] = [
     problem: "Student and teacher workflows required strict authorization while sharing common access paths and enrollment data.",
     decision: "Implemented inherited role middleware, a normalized junction table, cascade constraints, and parameterized queries.",
     outcome: "A deployed full-stack learning system with clear authorization boundaries and duplicate-safe enrollment flows.",
-    github: "https://github.com/atrivers3",
+    github: "https://github.com/atrivers3/ParhoFast",
   },
   {
     id: "raabta",
@@ -85,7 +85,7 @@ export const projects: Project[] = [
     problem: "Roman Urdu contains spelling variance and contextual ambiguity that cannot map directly to deterministic sign animations.",
     decision: "Built a normalization and WSD pipeline, then sequenced manually authored Blender assets through a custom Unity C# engine.",
     outcome: "An offline-first translation prototype plus a MediaPipe-to-BVH research path for evaluating automated motion capture.",
-    github: "https://github.com/atrivers3",
+    github: "https://github.com/atrivers3/RAABTA-FYP",
   },
   {
     id: "mini-ai-agent",
@@ -181,7 +181,7 @@ export const projects: Project[] = [
     problem: "A small financial application still needed maintainable boundaries, safe queries, and useful reporting without framework overhead.",
     decision: "Applied a three-tier architecture, DAO pattern, PreparedStatements, normalized storage, and externalized configuration.",
     outcome: "A decoupled expense tracker with safe persistence and dynamic monthly and yearly aggregate reports.",
-    github: "https://github.com/atrivers3",
+    github: "https://github.com/atrivers3/expensetracker",
   },
 ]
 
@@ -198,7 +198,6 @@ export type LeadershipProgram = {
   program: string
   organiser: string
   completedCohorts: string[]
-  pendingNote: string
 }
 
 export type TimelineEntry = {
@@ -229,13 +228,6 @@ export const harvardAspire: LeadershipProgram = {
   program: "Harvard Aspire Leadership Program",
   organiser: "Harvard University",
   completedCohorts: ["Cohort I", "Cohort II"],
-  /**
-   * Cohort III was left incomplete due to a clash with university final
-   * examinations. Participation was deprioritised in favour of academic
-   * commitments. Certificates for the two completed cohorts were awarded.
-   */
-  pendingNote:
-    "Cohort III — Deferred (Final Exam Prioritization). Certificates awarded for Cohorts I & II.",
 }
 
 // ── Social Work & Leadership Timeline ───────────────────────────────────────
@@ -255,12 +247,6 @@ export const leadershipTimeline: TimelineEntry[] = [
     year: "2023",
     role: "Campus Brand Ambassador",
     society: "Developer's Day 2023",
-  },
-  {
-    year: "2022 – 2023",
-    role: "Core Team Member",
-    // TODO: Replace with your actual society name for 2022–2023
-    society: "Your Society / Club Name",
   },
 ]
 

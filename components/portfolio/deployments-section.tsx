@@ -112,11 +112,6 @@ export function DeploymentsSection() {
         {deployments.map((dep) => (
           <DeploymentCard key={dep.id} deployment={dep} />
         ))}
-
-        {/* Future-proofing placeholder */}
-        <div className="deployment-placeholder font-mono">
-          <span aria-hidden="true">+</span> PENDING UPSTREAM INPUT
-        </div>
       </div>
     </section>
   )

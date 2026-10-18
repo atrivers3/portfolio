@@ -1,6 +1,6 @@
 "use client"
 
-import { CircleCheck, Clock, Trophy, Users } from "lucide-react"
+import { CircleCheck, Trophy, Users } from "lucide-react"
 import {
   awards,
   education,
@@ -66,22 +66,6 @@ function HarvardAspireCard() {
             </li>
           ))}
         </ul>
-
-        {/* Cohort III — mature, factual framing */}
-        <div className="harvard-cohort-deferred font-mono">
-          <Clock aria-hidden="true" />
-          <div>
-            <p className="harvard-deferred-label">Cohort III</p>
-            <p className="harvard-deferred-note">
-              Deferred — Final Exam Prioritization
-            </p>
-            <p className="harvard-deferred-sub">
-              University examinations took precedence during the final cohort
-              window. Participation was consciously paused to protect academic
-              standing.
-            </p>
-          </div>
-        </div>
       </div>
     </article>
   )

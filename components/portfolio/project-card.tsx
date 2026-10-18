@@ -43,10 +43,14 @@ export function ProjectCard({ project, onInspect, forced = false }: { project: P
         <span className="phase-readout"><span className="status-dot" /> {phase.toUpperCase()}</span>
       </div>
       <div className="reveal-surface" data-phase={phase}>
+        {/* Screen readers, SEO, and copy-paste always get the clean, real code */}
+        <div className="sr-only">
+          <code>{project.code.join("\n")}</code>
+        </div>
         <div className="stage-code font-mono">
           {project.code.map((line, index) => <code key={`${project.id}-${index}`}>{line}</code>)}
         </div>
-        <div className="stage-scramble font-mono" aria-hidden="true">
+        <div className="stage-scramble font-mono select-none" aria-hidden="true">
           {project.code.join(" ").split("").slice(0, 142).map((char, index) => <span key={index}>{index % 5 === 0 ? "#" : index % 7 === 0 ? "0" : char}</span>)}
         </div>
         <div className="stage-pixels" aria-hidden="true">
